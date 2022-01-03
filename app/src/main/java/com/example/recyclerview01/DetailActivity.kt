@@ -32,7 +32,7 @@ class DetailActivity : AppCompatActivity() {
             }
             R.id.favMenu -> {
                 val testing = intent.getStringExtra(NAME_KEY)
-                var state = intent.getBooleanExtra(DESC_KEY,true)
+                var state = intent.getBooleanExtra(DESC_KEY,false)
                 if(state){
                     item.setIcon(R.drawable.unfav)
                 }else{

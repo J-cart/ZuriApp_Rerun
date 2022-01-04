@@ -21,7 +21,7 @@ class R_Adapter(val details : ArrayList<dummy>,private val onClick: onClick) : R
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): viewHolder1 {
-        var view = LayoutInflater.from(parent.context).inflate(R.layout.itemlayout, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.itemlayout, parent, false)
         return viewHolder1(view)
     }
 
@@ -33,6 +33,9 @@ class R_Adapter(val details : ArrayList<dummy>,private val onClick: onClick) : R
         }
         holder.btn.setOnClickListener {
             onClick.btnClicked(position)
+        }
+        holder.favBtn.setOnClickListener {
+            onClick.favClicked(position)
         }
 
     }
@@ -46,11 +49,14 @@ class R_Adapter(val details : ArrayList<dummy>,private val onClick: onClick) : R
         val text2 = itemView.findViewById<TextView>(R.id.Tv20)
         val img = itemView.findViewById<ImageView>(R.id.image10)
         val btn = itemView.findViewById<MaterialButton>(R.id.btn1)
+        val favBtn = itemView.findViewById<ImageView>(R.id.favorite)
 
          fun bind(detail:dummy){
              text1.text = detail.name
              text2.text = detail.desc
              img.setImageResource(detail.imagesrc)
+             val setIcon = if(detail.favorite) R.drawable.fav else R.drawable.unfav
+             favBtn.setImageResource(setIcon)
 
          }
     }

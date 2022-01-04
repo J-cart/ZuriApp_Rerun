@@ -8,22 +8,28 @@ import androidx.recyclerview.widget.RecyclerView
 
 class MainActivity : AppCompatActivity(), onClick {
     companion object {
-        val IMAGE_KEY = "image key"
+       /* val IMAGE_KEY = "image key"
         val NAME_KEY = "name key"
-        val DESC_KEY = "desc key"
+        val DESC_KEY = "desc key"*/
         var dummyList = ArrayList<dummy>()
     }
+    private lateinit var adapter: R_Adapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val recycle = findViewById<RecyclerView>(R.id.recycler)
         val dtscall = addDets()
-        val adapter = R_Adapter(dtscall, this)
+        adapter = R_Adapter(dtscall, this)
         recycle.adapter = adapter
         supportActionBar?.apply {
             title = "Welcome Folks"
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        adapter.notifyDataSetChanged()
     }
 
     fun addDets(): ArrayList<dummy> {
@@ -71,10 +77,18 @@ class MainActivity : AppCompatActivity(), onClick {
     override fun btnClicked(position: Int) {
         val intent = Intent(this, DetailActivity::class.java)
         val pos = dummyList[position]
+        intent.putExtra("position", pos.name) //do intent.putExtra("position,pos) for SERIALIZABLE
+     /*val pos = dummyList[position]
         intent.putExtra(IMAGE_KEY, pos.imagesrc)
         intent.putExtra(NAME_KEY, pos.name)
-        intent.putExtra(DESC_KEY, pos.favorite)
+        intent.putExtra(DESC_KEY, pos.favorite)*/
         startActivity(intent)
+    }
+
+    override fun favClicked(position: Int) {
+        val pos = dummyList[position]
+         pos.favorite = !pos.favorite
+        adapter.notifyItemChanged(position)
     }
 
     override fun viewClicked(position: Int) {

@@ -78,6 +78,15 @@
                 app:layout_constraintStart_toStartOf="@id/Tv10"
                 app:layout_constraintTop_toBottomOf="@id/Tv10" />
 
+            <ImageView
+                android:id="@+id/favorite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/unfav"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/Tv20"
+                app:layout_constraintTop_toBottomOf="@+id/Tv20" />
+
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn1"
                 android:layout_width="wrap_content"
